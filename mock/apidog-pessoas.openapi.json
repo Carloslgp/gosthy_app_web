@@ -1,0 +1,86 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Ghosty Web - Mock de Pessoas",
+    "version": "1.0.0",
+    "description": "Especificacao para importar no Apidog e gerar o Cloud Mock consumido pela Azure Function GET /api/mock/pessoas."
+  },
+  "servers": [{ "url": "https://SEU-MOCK.apidog.io", "description": "Cloud Mock do Apidog" }],
+  "paths": {
+    "/pessoas": {
+      "get": {
+        "summary": "Lista de pessoas (mock)",
+        "operationId": "listarPessoasMock",
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "required": false,
+            "description": "Filtro opcional por parte do nome.",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de pessoas",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Pessoa" } },
+                "example": [
+                  { "id": 1, "nome": "Amanda Fila de Lima" },
+                  { "id": 2, "nome": "Carlos Leonardo Garcia Pscheidt" },
+                  { "id": 3, "nome": "Gustavo Yuri" },
+                  { "id": 4, "nome": "Rafael Della" },
+                  { "id": 5, "nome": "Ana Beatriz Moraes" },
+                  { "id": 6, "nome": "Bruno Tadeu Ferreira" },
+                  { "id": 7, "nome": "Camila Rocha Antunes" },
+                  { "id": 8, "nome": "Diego Nascimento Alves" },
+                  { "id": 9, "nome": "Eduarda Nunes Prado" },
+                  { "id": 10, "nome": "Felipe Andrade Correia" }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pessoas/{id}": {
+      "get": {
+        "summary": "Pessoa especifica (mock)",
+        "operationId": "buscarPessoaMock",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pessoa encontrada",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Pessoa" },
+                "example": { "id": 3, "nome": "Gustavo Yuri" }
+              }
+            }
+          },
+          "404": { "description": "Pessoa nao encontrada" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Pessoa": {
+        "type": "object",
+        "required": ["id", "nome"],
+        "properties": {
+          "id": { "type": "integer", "example": 1 },
+          "nome": { "type": "string", "example": "Amanda Fila de Lima" }
+        }
+      }
+    }
+  }
+}

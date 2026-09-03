@@ -1,0 +1,369 @@
+:root {
+  --fundo: #f4f5f9;
+  --superficie: #ffffff;
+  --borda: #e2e4ee;
+  --texto: #1a1c25;
+  --texto-suave: #61657a;
+  --primaria: #5b4bd6;
+  --primaria-escura: #4a3cbb;
+  --primaria-suave: #ede9fd;
+  --erro: #b3261e;
+  --erro-fundo: #fdecea;
+  --sucesso: #1e6b3f;
+  --sucesso-fundo: #e6f4ec;
+  --sombra: 0 1px 2px rgba(20, 22, 40, 0.06), 0 8px 24px rgba(20, 22, 40, 0.06);
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #14151c;
+    --superficie: #1d1f29;
+    --borda: #2e3140;
+    --texto: #eef0f7;
+    --texto-suave: #a0a4b8;
+    --primaria: #9d90ff;
+    --primaria-escura: #b3a8ff;
+    --primaria-suave: #2a2745;
+    --erro: #ff9d95;
+    --erro-fundo: #3a1f1d;
+    --sucesso: #86d7a6;
+    --sucesso-fundo: #16301f;
+    --sombra: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 100vh;
+}
+
+/* Cabecalho */
+.cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cabecalho__marca {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cabecalho__logo {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.cabecalho h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+
+.cabecalho p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--texto-suave);
+}
+
+.navegacao {
+  display: flex;
+  gap: 4px;
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.navegacao__item {
+  padding: 7px 14px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--texto-suave);
+  transition: background 0.15s, color 0.15s;
+}
+
+.navegacao__item:hover {
+  color: var(--texto);
+}
+
+.navegacao__item--ativo {
+  background: var(--primaria);
+  color: #fff;
+}
+
+.navegacao__item--ativo:hover {
+  color: #fff;
+}
+
+/* Conteudo */
+.conteudo {
+  flex: 1;
+}
+
+.cartao {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cartao__topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cartao h2 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.cartao__descricao {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  color: var(--texto-suave);
+  max-width: 52ch;
+}
+
+/* Seletores */
+.seletor-fonte {
+  display: inline-flex;
+  gap: 4px;
+  background: var(--fundo);
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  padding: 4px;
+  align-self: flex-start;
+}
+
+.seletor-fonte__item {
+  border: 0;
+  background: transparent;
+  color: var(--texto-suave);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.seletor-fonte__item--ativo {
+  background: var(--superficie);
+  color: var(--texto);
+  box-shadow: 0 1px 2px rgba(20, 22, 40, 0.12);
+}
+
+/* Formularios */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.formulario--linha {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.campo__rotulo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-suave);
+}
+
+.campo__entrada {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--texto);
+  background: var(--fundo);
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+}
+
+.campo__entrada:focus {
+  outline: 2px solid var(--primaria);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.botao {
+  padding: 10px 20px;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primaria);
+  border: 1px solid transparent;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.botao:hover:not(:disabled) {
+  background: var(--primaria-escura);
+}
+
+.botao:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.botao--secundario {
+  background: var(--primaria-suave);
+  color: var(--primaria);
+  border-color: var(--borda);
+}
+
+.botao--secundario:hover:not(:disabled) {
+  background: var(--primaria-suave);
+  border-color: var(--primaria);
+}
+
+/* Tabela */
+.tabela-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+
+.tabela th,
+.tabela td {
+  text-align: left;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.tabela thead th {
+  background: var(--fundo);
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--texto-suave);
+}
+
+.tabela tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tabela tbody tr:hover td {
+  background: var(--primaria-suave);
+}
+
+.tabela__id {
+  width: 90px;
+  font-variant-numeric: tabular-nums;
+  color: var(--texto-suave);
+}
+
+/* Estados */
+.resumo,
+.estado {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--texto-suave);
+}
+
+.estado {
+  padding: 22px;
+  text-align: center;
+  border: 1px dashed var(--borda);
+  border-radius: 10px;
+}
+
+.aviso {
+  margin: 0;
+  padding: 11px 14px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+.aviso--erro {
+  background: var(--erro-fundo);
+  color: var(--erro);
+}
+
+.aviso--sucesso {
+  background: var(--sucesso-fundo);
+  color: var(--sucesso);
+}
+
+.rodape {
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--texto-suave);
+}
+
+@media (max-width: 560px) {
+  .navegacao {
+    width: 100%;
+  }
+
+  .navegacao__item {
+    flex: 1;
+    text-align: center;
+    padding: 7px 8px;
+  }
+}
+
+code {
+  font-family: 'Cascadia Code', Consolas, 'SF Mono', monospace;
+  font-size: 0.92em;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--primaria-suave);
+  color: var(--primaria);
+}
+
+.aviso--info {
+  background: var(--primaria-suave);
+  color: var(--primaria);
+}

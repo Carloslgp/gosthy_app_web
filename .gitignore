@@ -1,1 +1,15 @@
-/backend/.env
+# Segredos e configuracoes locais
+backend/.env
+backend/.env.supabase.bak
+backend/local.settings.json
+*.local
+
+# Dependencias e builds
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.vscode/

@@ -1,0 +1,14 @@
+{
+  "name": "ghosty-web-api",
+  "version": "1.0.0",
+  "description": "Azure Functions (Node.js v4) - API de cadastro e consulta de pessoas",
+  "main": "src/functions/*.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "func start",
+    "prestart": "echo Requer: npm i -g azure-functions-core-tools@4"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.5.1"
+  }
+}
