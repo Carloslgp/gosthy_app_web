@@ -206,7 +206,12 @@ git push -u origin main
 | **Nome** | `ghosty-web` (o nome aparece na URL) |
 | **Tipo de plano** | **Free** |
 | **Origem de implantação** | **GitHub** |
-| **Região** | a mais próxima (ex.: *Brazil South* / *East US 2*) |
+| **Região** | **East US 2** |
+
+> ℹ️ O Static Web Apps só existe em cinco regiões (Central US, East US 2, West US 2, West Europe,
+> East Asia) — **não há região no Brasil**. Use *East US 2*, a mais próxima. Isso não afeta a
+> velocidade do site: o conteúdo estático é distribuído por CDN global; a região define apenas
+> onde as Azure Functions executam.
 
 ### Passo 4 — Conectar o GitHub
 
@@ -261,6 +266,25 @@ Pronto: a cada `git push` na branch `main`, o Azure republica o site automaticam
 | Recarregar `/buscar` dá 404 | Fallback de SPA ausente | Confirme que `staticwebapp.config.json` está na raiz e em `frontend/public/`. |
 | Cadastro some depois de um tempo | Comportamento esperado | Não há banco: os registros vivem na memória da Function. |
 | Deploy falha no GitHub Actions | Secret ausente | Confirme `AZURE_STATIC_WEB_APPS_API_TOKEN` em **Settings → Secrets → Actions**. |
+| `RequestDisallowedByAzure` ao criar o recurso | Região bloqueada pela política da assinatura | Volte à aba *Básico* e escolha explicitamente a região — veja a nota abaixo. |
+
+### Atenção: região na assinatura Azure for Students
+
+A assinatura **Azure for Students** aplica uma política que limita as regiões onde você pode
+implantar. Se o campo **Região de hospedagem → Regiões** não for preenchido explicitamente, a
+criação falha com:
+
+```
+RequestDisallowedByAzure — This policy maintains a set of best available regions
+where your subscription can deploy resources.
+```
+
+**Não é problema de grupo de recursos.** Volte à aba *Básico* e selecione **East US 2**. Se não
+estiver disponível, tente nesta ordem: *East US*, *Central US*, *West US 2*.
+
+> Dica para descobrir quais regiões sua assinatura libera: abra o dropdown de **Grupo de Recursos**.
+> Os grupos `DefaultResourceGroup-XXX` indicam regiões já usadas com sucesso (`EUS2` = East US 2,
+> `EUS` = East US, `CCAN` = Canada Central).
 
 ---
 
